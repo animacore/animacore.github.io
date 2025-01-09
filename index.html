@@ -135,9 +135,40 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Custom Cursor */
+        body {
+            cursor: none;
+        }
+
+        .cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 87, 34, 0.8);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 20px;
+            color: #fff;
+            font-style: italic;
+            z-index: 1000;
+            mix-blend-mode: difference;
+        }
+
+        .cursor span {
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
+    <div class="cursor"><span>m</span></div>
     <header>
         <h1>ani<span class="highlight">m</span>a core</h1>
         <p>The centre, the hub, the soul of it all. anima core is the point of convergence where innovation, technology, and creativity thrive.</p>
@@ -171,5 +202,14 @@
     <footer>
         <p>&copy; 2025 anima core. Designed with care and innovation. <a href="#">Learn More</a></p>
     </footer>
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.top = `${e.clientY}px`;
+            cursor.style.left = `${e.clientX}px`;
+        });
+    </script>
 </body>
 </html>
