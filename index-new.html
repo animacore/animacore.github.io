@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>anima core</title>
     <style>
         :root {
@@ -199,115 +200,233 @@
             max-width: var(--max-content-width);
             margin: 0 auto;
         }
+
+        .game-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            background: var(--background-light);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        #gameCanvas {
+            border: 2px solid var(--hr-dark);
+            background: var(--background-dark);
+            width: 90%;
+            max-width: 600px;
+            height: 400px;
+        }
+
+        .reset-button {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+        }
+
+        .reset-button:hover {
+            background: var(--secondary-color);
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-animation" id="animationContainer"></div>
-        <h1>ani<span class="highlight">m</span>a core</h1>
-        <p class="header-description">the centre, the hub, the soul of it all. anima core is the point of convergence where innovation, technology, and creativity thrive.</p>
-        <div class="scroll-indicator">&#x25BC;</div>
-    </header>
-
-    <section>
-        <h2>what is anima core?</h2>
-        <p>anima core is the unifying force behind technology and creativity. it brings systems together, harmonises ideas, and unlocks infinite possibilities.</p>
-
-        <div class="grid dynamic-grid">
-            <div class="card">
-                <h3>connectivity</h3>
-                <p>building bridges between platforms and technologies, ensuring seamless integration.</p>
-            </div>
-            <div class="card">
-                <h3>adaptability</h3>
-                <p>evolving with your needs, adapting to challenges in a dynamic landscape.</p>
-            </div>
-            <div class="card">
-                <h3>progress</h3>
-                <p>at the forefront of innovation, pushing boundaries and driving the future.</p>
-            </div>
-        </div>
-    </section>
-
-    <hr>
-
-    <section>
-        <h2>#projectyolo</h2>
-        <p>a bold initiative designed to break barriers and deliver transformative solutions at speed. #projectyolo is driven by a team united by their shared vision: to remove complexity, reduce costs, and empower innovation without the drag of bureaucracy.</p>
-        <p>we've seen the frustration of navigating red tape and the exclusivity of big-budget expertise - and we're here to change it. with a "you only live once" mentality, we broke free from the chains with a goal to cut through the noise, bringing accessible, high-impact tools and ideas to life.</p>
-
-        <div class="grid dynamic-grid">
-            <div class="tile tile-ff5722">
-                <h3><i>ai & automation</i></h3>
-                <p>creating smart tools and automated processes to simplify the complex.</p>
-            </div>
-            <div class="tile tile-8e44ad">
-                <h3><i>infrastructure</i></h3>
-                <p>robust, codified, and automated for speed, scale, and simplicity.</p>
-            </div>
-            <div class="tile tile-4cc988">
-                <h3><i>cybersecurity</i></h3>
-                <p>protecting your systems with robust defence governance, compliance, and technology.</p>
-            </div>
-            <div class="tile tile-2196f3">
-                <h3><i>development</i></h3>
-                <p>building solutions tailored to your needs, on demand.</p>
-            </div>
-            <div class="tile tile-fbb318">
-                <h3><i>data science</i></h3>
-                <p>uncovering insights and driving smarter decisions with data.</p>
-            </div>
-            <div class="tile tile-e52d8d">
-                <h3><i>devops</i></h3>
-                <p>streamlining workflows to enhance deployment efficiency.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 anima core. designed with care and innovation. <a href="#">learn more</a></p>
-    </footer>
-
-    <script>
-        const animationContainer = document.getElementById('animationContainer');
-        const ballColors = ['#ff5722', '#4cc988', '#2196f3', '#fbb318', '#e52d8d', '#8e44ad'];
-        const ballSizes = [20, 30, 40, 50, 60];
-
-        function createBall() {
-            const ball = document.createElement('div');
-            const size = ballSizes[Math.floor(Math.random() * ballSizes.length)];
-
-            ball.className = 'ball';
-            ball.style.backgroundColor = ballColors[Math.floor(Math.random() * ballColors.length)];
-            ball.style.width = `${size}px`;
-            ball.style.height = `${size}px`;
-            ball.style.left = `${Math.random() * 90}%`;
-
-            const position = {
-                x: parseFloat(ball.style.left),
-                y: -size,
-                speedY: Math.random() * 3 + 2,
-            };
-
-            ball.style.transform = `translate(${position.x}px, ${position.y}px)`;
-            animationContainer.appendChild(ball);
-
-            function fall() {
-                position.y += position.speedY;
-
-                if (position.y >= animationContainer.offsetHeight) {
-                    ball.remove();
-                    return;
-                }
-
-                ball.style.transform = `translate(${position.x}px, ${position.y}px)`;
-                requestAnimationFrame(fall);
-            }
-
-            fall();
-        }
-
-        setInterval(createBall, 500);
-    </script>
-</body>
-</html>
+     <header>
+         <div class="header-animation" id="animationContainer"></div>
+         <h1>ani<span class="highlight">m</span>a core</h1>
+         <p class="header-description">the centre, the hub, the soul of it all. anima core is the point of convergence where innovation, technology, and creativity thrive.</p>
+         <div class="scroll-indicator">&#x25BC;</div>
+     </header>
+ 
+     <section>
+         <h2>what is ani<span class="highlight">m</span>a core?</h2>
+         <p>anima core is the unifying force behind technology and creativity. it brings systems together, harmonises ideas, and unlocks infinite possibilities.</p>
+ 
+         <div class="grid dynamic-grid">
+             <div class="card">
+                 <h3>connectivity</h3>
+                 <p>building bridges between platforms and technologies, ensuring seamless integration.</p>
+             </div>
+             <div class="card">
+                 <h3>adaptability</h3>
+                 <p>evolving with your needs, adapting to challenges in a dynamic landscape.</p>
+             </div>
+             <div class="card">
+                 <h3>progress</h3>
+                 <p>at the forefront of innovation, pushing boundaries and driving the future.</p>
+             </div>
+         </div>
+     </section>
+ 
+     <hr>
+ 
+     <section>
+         <h2>#projectyolo</h2>
+         <p>a bold initiative designed to break barriers and deliver transformative solutions at speed. #projectyolo is driven by a team united by their shared vision: to remove complexity, reduce costs, and empower innovation without the drag of bureaucracy.</p>
+         <p>we've seen the frustration of navigating red tape and the exclusivity of big-budget expertise – and we’re here to change it. with a "you only live once" mentality, we cut through the noise, bringing accessible, high-impact tools and ideas to life.</p>
+ 
+         <div class="grid dynamic-grid">
+             <div class="tile tile-ff5722">
+                 <h3>ai</h3>
+                 <p>creating cutting-edge artificial intelligence solutions for diverse needs.</p>
+             </div>
+             <div class="tile tile-8e44ad">
+                 <h3>automation</h3>
+                 <p>streamlining workflows with efficient automated processes.</p>
+             </div>
+             <div class="tile tile-4cc988">
+                 <h3>cybersecurity</h3>
+                 <p>protecting your systems with robust defence strategies.</p>
+             </div>
+             <div class="tile tile-2196f3">
+                 <h3>development</h3>
+                 <p>building solutions tailored to your needs, on demand.</p>
+             </div>
+             <div class="tile tile-fbb318">
+                 <h3>data science</h3>
+                 <p>uncovering insights and driving smarter decisions with data.</p>
+             </div>
+             <div class="tile tile-e52d8d">
+                 <h3>devops</h3>
+                 <p>streamlining workflows to enhance deployment efficiency.</p>
+             </div>
+         </div>
+     </section>
+ 
+     <section class="game-section">
+         <h2>fun zone: falling balls</h2>
+         <canvas id="gameCanvas"></canvas>
+         <button class="reset-button" onclick="resetGame()">reset game</button>
+         <p id="scoreDisplay">score: 0</p>
+     </section>
+ 
+     <footer>
+         <p>&copy; 2025 anima core. designed with care and innovation. <a href="#">learn more</a></p>
+     </footer>
+ 
+     <script>
+         const canvas = document.getElementById("gameCanvas");
+         const ctx = canvas.getContext("2d");
+         const colors = ['#ff5722', '#4cc988', '#2196f3', '#fbb318', '#e52d8d', '#8e44ad'];
+         let balls = [];
+         let grid = Array.from({ length: 400 / 20 }, () => []);
+         let score = 0;
+         let currentBall = null;
+ 
+         class Ball {
+             constructor(x, color) {
+                 this.x = x;
+                 this.y = 0;
+                 this.radius = 10;
+                 this.color = color;
+                 this.speed = 2;
+             }
+ 
+             draw() {
+                 ctx.beginPath();
+                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                 ctx.fillStyle = this.color;
+                 ctx.fill();
+                 ctx.closePath();
+             }
+ 
+             update() {
+                 this.y += this.speed;
+                 if (this.y + this.radius >= canvas.height) {
+                     const colIndex = Math.floor(this.x / 20);
+                     grid[colIndex].push(this.color);
+                     balls.splice(balls.indexOf(this), 1);
+                     checkMatches();
+                     spawnBall();
+                 }
+             }
+         }
+ 
+         function checkMatches() {
+             for (let col = 0; col < grid.length; col++) {
+                 for (let row = 0; row < grid[col].length; row++) {
+                     if (
+                         checkDirection(col, row, 1, 0) || // Horizontal
+                         checkDirection(col, row, 0, 1) || // Vertical
+                         checkDirection(col, row, 1, 1) || // Diagonal right
+                         checkDirection(col, row, 1, -1) // Diagonal left
+                     ) {
+                         grid[col][row] = null;
+                         score += 10;
+                         updateScore();
+                     }
+                 }
+             }
+             grid = grid.map((col) => col.filter(Boolean));
+         }
+ 
+         function checkDirection(col, row, colOffset, rowOffset) {
+             const color = grid[col]?.[row];
+             if (!color) return false;
+ 
+             return (
+                 grid[col + colOffset]?.[row + rowOffset] === color &&
+                 grid[col + 2 * colOffset]?.[row + 2 * rowOffset] === color
+             );
+         }
+ 
+         function updateScore() {
+             document.getElementById("scoreDisplay").textContent = `score: ${score}`;
+         }
+ 
+         function resetGame() {
+             balls = [];
+             grid = Array.from({ length: 400 / 20 }, () => []);
+             score = 0;
+             currentBall = null;
+             updateScore();
+         }
+ 
+         function spawnBall() {
+             const x = Math.random() * canvas.width;
+             const color = colors[Math.floor(Math.random() * colors.length)];
+             currentBall = new Ball(x, color);
+             balls.push(currentBall);
+         }
+ 
+         function drawGrid() {
+             for (let i = 0; i < grid.length; i++) {
+                 for (let j = 0; j < grid[i].length; j++) {
+                     if (grid[i][j]) {
+                         ctx.fillStyle = grid[i][j];
+                         ctx.fillRect(i * 20, canvas.height - (j + 1) * 20, 20, 20);
+                     }
+                 }
+             }
+         }
+ 
+         function gameLoop() {
+             ctx.clearRect(0, 0, canvas.width, canvas.height);
+             balls.forEach((ball) => {
+                 ball.update();
+                 ball.draw();
+             });
+             drawGrid();
+             requestAnimationFrame(gameLoop);
+         }
+ 
+         document.addEventListener("keydown", (event) => {
+             if (currentBall) {
+                 if (event.key === "ArrowLeft" && currentBall.x - currentBall.radius > 0) {
+                     currentBall.x -= 20;
+                 } else if (event.key === "ArrowRight" && currentBall.x + currentBall.radius < canvas.width) {
+                     currentBall.x += 20;
+                 }
+             }
+         });
+ 
+         spawnBall();
+         gameLoop();
+     </script>
+ </body>
+ 
+ 
