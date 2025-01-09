@@ -1,7 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anima core</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #000;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            letter-spacing: 2px;
+            text-transform: lowercase;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        header h1 .highlight {
+            color: #ff5722;
+            font-style: italic;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            animation: bounce 2s infinite;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        section {
+            padding: 6rem 10%;
+            text-align: center;
+        }
+
+        .about {
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .about p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #bbb;
+        }
+
+        .scroll-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .scroll-item {
+            padding: 3rem;
+            width: 300px;
+            background: #333;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .scroll-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .scroll-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .scroll-item p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: #111;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
-<h1>Beep Boop</h1>
-<p>Under Construction 🏗️</p>
+    <header>
+        <h1>ani<span class="highlight">m</span>a core</h1>
+        <p>The centre, the hub, the soul of it all. anima core is the point of convergence where innovation, technology, and creativity thrive.</p>
+        <div class="scroll-indicator">&#x25BC;</div>
+    </header>
+
+    <section>
+        <div class="about">
+            <h2>what is anima core?</h2>
+            <p>anima core is the unifying force behind technology and creativity. It brings systems together, harmonises ideas, and unlocks infinite possibilities.</p>
+        </div>
+
+        <div class="scroll-section">
+            <div class="scroll-item">
+                <h3>connectivity</h3>
+                <p>Building bridges between platforms and technologies, anima core ensures seamless integration.</p>
+            </div>
+
+            <div class="scroll-item">
+                <h3>adaptability</h3>
+                <p>anima core evolves with your needs, adapting to challenges in a dynamic landscape.</p>
+            </div>
+
+            <div class="scroll-item">
+                <h3>progress</h3>
+                <p>At the forefront of innovation, anima core pushes boundaries and drives the future.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 anima core. Designed with care and innovation. <a href="#">Learn More</a></p>
+    </footer>
 </body>
 </html>
