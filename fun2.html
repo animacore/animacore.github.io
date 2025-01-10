@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>anima core</title>
+    <style>
+        :root {
+            --primary-color: #ff5722;
+            --secondary-color: #4cc988;
+            --background-dark: #000;
+            --background-light: #111;
+            --text-light: #fff;
+            --text-muted: #ddd;
+            --hr-dark: #111;
+            --spacing: 1rem;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            --tile-ff5722: #ff5722;
+            --tile-4cc988: #4cc988;
+            --tile-2196f3: #2196f3;
+            --tile-fbb318: #fbb318;
+            --tile-e52d8d: #e52d8d;
+            --tile-8e44ad: #8e44ad;
+            --max-content-width: 900px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background: var(--background-dark);
+            position: relative;
+            overflow: hidden;
+            z-index: 5; /* Ensure header content is in front */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Add shadow for interaction with balls */
+        }
+
+        .header-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .ball {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-animation" id="animationContainer"></div>
+        <h1>ani<span class="highlight">m</span>a_core</h1>
+    </header>
+
+    <script>
+        const animationContainer = document.getElementById('animationContainer');
+        const ballColors = ['#ff5722', '#4cc988', '#2196f3', '#fbb318', '#e52d8d', '#8e44ad'];
+        const ballSizes = [20, 30, 40, 50, 60];
+        const balls = [];
+        const maxBalls = 30;
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+
+        function createBall(isLarge = false) {
+            if (balls.length >= maxBalls && !isLarge) return; // Limit regular balls
+
+            const ball = document.createElement('div');
+            const size = isLarge ? 100 : ballSizes[Math.floor(Math.random() * ballSizes.length)];
+            const color = ballColors[Math.floor(Math.random() * ballColors.length)];
+
+            ball.className = 'ball';
+            ball.style.width = `${size}px`;
+            ball.style.height = `${size}px`;
+            ball.style.left = `${Math.random() * 90}%`;
+            ball.style.top = `-${size}px`;
+            ball.style.background = `radial-gradient(circle at 50% 50%, ${color}, ${darkenColor(color, 0.5)} 70%, black 100%)`;
+
+            // Speed inversely proportional to size
+            const speedY = isLarge ? 1 : (100 - size) / 20;
+
+            // Assign a consistent z-index based on initial position
+            const initialY = Math.random() * 100;
+            ball.style.zIndex = Math.round(initialY);
+
+            animationContainer.appendChild(ball);
+            balls.push({ element: ball, size, color, speedY });
+        }
+
+        function updateLighting() {
+            balls.forEach(({ element, size, color }) => {
+                const rect = element.getBoundingClientRect();
+                const ballX = rect.left + size / 2;
+                const ballY = rect.top + size / 2;
+
+                const dx = mouseX - ballX;
+                const dy = mouseY - ballY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const lightX = ((mouseX - rect.left) / rect.width) * 100;
+                const lightY = ((mouseY - rect.top) / rect.height) * 100;
+
+                // Adjust gradient based on proximity
+                const brightness = Math.max(0.6, 1 - distance / size);
+                const highlightColor = lightenColor(color, brightness);
+
+                element.style.background = `radial-gradient(circle at ${lightX}% ${lightY}%, ${highlightColor}, ${color} 70%, black 100%)`;
+            });
+
+            requestAnimationFrame(updateLighting);
+        }
+
+        function darkenColor(color, amount) {
+            const num = parseInt(color.slice(1), 16);
+            const r = Math.max(0, (num >> 16) - amount * 255);
+            const g = Math.max(0, ((num >> 8) & 0x00FF) - amount * 255);
+            const b = Math.max(0, (num & 0x0000FF) - amount * 255);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function lightenColor(color, amount) {
+            const num = parseInt(color.slice(1), 16);
+            const r = Math.min(255, (num >> 16) + amount * 255);
+            const g = Math.min(255, ((num >> 8) & 0x00FF) + amount * 255);
+            const b = Math.min(255, (num & 0x0000FF) + amount * 255);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function animateBalls() {
+            balls.forEach((ball, index) => {
+                const rect = ball.element.getBoundingClientRect();
+                const newY = rect.top + ball.speedY;
+
+                if (newY > window.innerHeight) {
+                    ball.element.remove();
+                    balls.splice(index, 1); // Remove ball from array
+                } else {
+                    ball.element.style.top = `${newY}px`;
+                }
+            });
+
+            requestAnimationFrame(animateBalls);
+        }
+
+        function randomlyCreateBalls() {
+            createBall();
+            setTimeout(randomlyCreateBalls, Math.random() * 1000); // Random interval between ball creation
+        }
+
+        function createLargeBallPeriodically() {
+            createBall(true);
+            setTimeout(createLargeBallPeriodically, 10000); // Large ball every 10 seconds
+        }
+
+        randomlyCreateBalls();
+        createLargeBallPeriodically();
+        animateBalls();
+        updateLighting();
+
+        window.addEventListener('mousemove', (event) => {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        });
+    </script>
+</body>
+</html>

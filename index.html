@@ -205,13 +205,13 @@
 <body>
     <header>
         <div class="header-animation" id="animationContainer"></div>
-        <h1>ani<span class="highlight">m</span>a core</h1>
+        <h1>ani<span class="highlight">m</span>a_core</h1>
         <p class="header-description">the centre, the hub, the soul of it all. anima core is the point of convergence where innovation, technology, and creativity thrive.</p>
         <div class="scroll-indicator">&#x25BC;</div>
     </header>
 
     <section>
-        <h2>what is ani<span class="highlight">m</span>a core?</h2>
+        <h2>what is ani<span class="highlight">m</span>a_core?</h2>
         <p>anima core is the unifying force behind technology and creativity. it brings systems together, harmonises ideas, and unlocks infinite possibilities.</p>
 
         <div class="grid dynamic-grid">
@@ -239,7 +239,7 @@
 
         <div class="grid dynamic-grid">
             <div class="tile tile-ff5722">
-                <h3><i>ai & automation</i></h3>
+                <h3><i>ai_&_automation</i></h3>
                 <p>creating smart tools and automated processes to simplify the complex.</p>
             </div>
             <div class="tile tile-8e44ad">
@@ -255,60 +255,84 @@
                 <p>building solutions tailored to your needs, on demand.</p>
             </div>
             <div class="tile tile-fbb318">
-                <h3><i>data science</i></h3>
+                <h3><i>data_science</i></h3>
                 <p>uncovering insights and driving smarter decisions with data.</p>
             </div>
             <div class="tile tile-e52d8d">
                 <h3><i>devops</i></h3>
                 <p>streamlining workflows to enhance deployment efficiency.</p>
             </div>
+            
         </div>
     </section>
+
+    <hr>
+
+    <section>
+     <h2>conta<span class="highlight">c</span>t</h2>
+     <p>__error: the term 'contact' is not recognised as the name of a cmdlet, function, script file, operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.<br>
+          At line:1 char:1<br>
+          + contact team activate money<br>
+          + ~~~~~<br>
+              + CategoryInfo          : ObjectNotFound: (contact:String) [], CommandNotFoundException<br>
+              + FullyQualifiedErrorId : CommandNotFoundException<br>
+          +<br>
+          + ~~~~~ mAyBe sOoN<br>
+     <br></p>
+</section>
 
     <footer>
         <p>&copy; 2025 anima core. designed with care and innovation. <a href="#">learn more</a></p>
     </footer>
 
     <script>
-        const animationContainer = document.getElementById('animationContainer');
-        const ballColors = ['#ff5722', '#4cc988', '#2196f3', '#fbb318', '#e52d8d', '#8e44ad'];
-        const ballSizes = [20, 30, 40, 50, 60];
-
-        function createBall() {
-            const ball = document.createElement('div');
-            const size = ballSizes[Math.floor(Math.random() * ballSizes.length)];
-
-            ball.className = 'ball';
-            ball.style.backgroundColor = ballColors[Math.floor(Math.random() * ballColors.length)];
-            ball.style.width = `${size}px`;
-            ball.style.height = `${size}px`;
-            ball.style.left = `${Math.random() * 90}%`;
-
-            const position = {
-                x: parseFloat(ball.style.left),
-                y: -size,
-                speedY: Math.random() * 3 + 2,
-            };
-
-            ball.style.transform = `translate(${position.x}px, ${position.y}px)`;
-            animationContainer.appendChild(ball);
-
-            function fall() {
-                position.y += position.speedY;
-
-                if (position.y >= animationContainer.offsetHeight) {
-                    ball.remove();
-                    return;
-                }
-
-                ball.style.transform = `translate(${position.x}px, ${position.y}px)`;
-                requestAnimationFrame(fall);
-            }
-
-            fall();
-        }
-
-        setInterval(createBall, 500);
-    </script>
+     const animationContainer = document.getElementById('animationContainer');
+     const ballColors = ['#ff5722', '#4cc988', '#2196f3', '#fbb318', '#e52d8d', '#8e44ad'];
+     const ballSizes = [20, 30, 40, 50, 60];
+     let currentBallCount = 0; // Track the number of balls
+ 
+     const MAX_BALLS = 20; // Set maximum number of balls
+ 
+     function createBall() {
+         if (currentBallCount >= MAX_BALLS) return; // Stop if max balls are reached
+ 
+         const ball = document.createElement('div');
+         const size = ballSizes[Math.floor(Math.random() * ballSizes.length)];
+ 
+         ball.className = 'ball';
+         ball.style.backgroundColor = ballColors[Math.floor(Math.random() * ballColors.length)];
+         ball.style.width = `${size}px`;
+         ball.style.height = `${size}px`;
+         ball.style.left = `${Math.random() * 90}%`;
+ 
+         const position = {
+             x: parseFloat(ball.style.left),
+             y: -size,
+             speedY: Math.random() * 3 + 2,
+         };
+ 
+         ball.style.transform = `translate(${position.x}px, ${position.y}px)`;
+         animationContainer.appendChild(ball);
+         currentBallCount++; // Increment the ball count
+ 
+         function fall() {
+             position.y += position.speedY;
+ 
+             if (position.y >= animationContainer.offsetHeight) {
+                 ball.remove();
+                 currentBallCount--; // Decrement the ball count when removed
+                 return;
+             }
+ 
+             ball.style.transform = `translate(${position.x}px, ${position.y}px)`;
+             requestAnimationFrame(fall);
+         }
+ 
+         fall();
+     }
+ 
+     setInterval(createBall, 500);
+ </script>
+ 
 </body>
 </html>
